@@ -266,9 +266,18 @@ function gameTapEvent(e) {
         _gameScore++;
         gameLayerMoveNextRow();
     } else if (_gameStart && !tar.notEmpty) {
-        createjs.Sound.play("err");
-        gameOver();
-        tar.className += ' bad';
+        if (!_gameStart) {
+            gameStart();
+        }
+        createjs.Sound.play("tap");
+        tar = document.getElementById(p.id);
+        tar.className = tar.className.replace(_ttreg, ' tt$1');
+        _gameBBListIndex++;
+        _gameScore++;
+        gameLayerMoveNextRow();
+        //createjs.Sound.play("err");
+        //gameOver();
+        //tar.className += ' bad';
     }
     return false;
 }
